@@ -1,16 +1,14 @@
 [project]
-name = "localclaw"
+name = "system-agent"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "farkaskid", email = "farkaskid.inbox@gmail.com" }
-]
+authors = [{ name = "farkaskid", email = "farkaskid.inbox@gmail.com" }]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = ["requests>=2.34.2"]
 
 [project.scripts]
-localclaw = "localclaw:main"
+system-agent = "system_agent:main"
 
 [build-system]
 requires = ["uv_build>=0.12.9,<0.13.0"]
