@@ -1,29 +1,30 @@
-# Task 1: LLM Client with Fallback Strategies
+# Task 2: Tool Executor with Secure Execution
 
 ## Concept Recap
-This task introduces the core pattern of mapping natural language to structured commands, with fallback strategies for when LLMs are unavailable. It establishes the modular architecture that will be extended in later tasks.
+This task builds on the LLM client's structured command output to implement secure execution of Linux CLI tools. It establishes the foundation for actual system interaction while maintaining security constraints.
 
 ## Goal
-Implement a basic LLM client that:
-1. Accepts natural language queries
-2. Maps them to structured commands
-3. Provides fallback strategies when LLM is unavailable
+Implement a secure CLI tool executor that:
+1. Runs commands in a sandboxed environment
+2. Parses structured output (text, JSON, tables)
+3. Validates commands against configured permissions
 
 ## Inputs / Outputs
-- Input: Natural language query (e.g., "Show me the disk usage")
-- Output: Structured command representation (e.g., {"tool": "df", "args": ["-h"]})
+- Input: Structured command from LLM client (e.g., {"tool": "df", "args": ["-h"]})
+- Output: Parsed execution result (e.g., {"status": "success", "output": "..."})
 
 ## Constraints
-- Must handle both API-based and local model interactions (using Ollama)
-- Must implement at least two fallback strategies
-- Should be testable with local LLM integration
+- Must implement process sandboxing (resource limits, chroot)
+- Must validate commands against tool_permissions.yaml
+- Must handle output parsing for common formats
 
 ## Acceptance Criteria
-1. [TESTABLE] The client returns a structured command object for valid inputs [TESTABLE]
-2. [TESTABLE] Fallback strategies are triggered when LLM is unavailable [TESTABLE]
-3. [QUALITATIVE] The code demonstrates clear separation of concerns between LLM interaction and command mapping [QUALITATIVE]
-4. [TESTABLE] The client handles at least three different types of natural language queries [TESTABLE]
+1. [TESTABLE] Executor runs valid commands with proper permissions [TESTABLE]
+2. [TESTABLE] Sandbox limits prevent resource exhaustion [TESTABLE]
+3. [TESTABLE] Output parser handles text, JSON, and table formats [TESTABLE]
+4. [QUALITATIVE] Code demonstrates clear separation between execution and parsing concerns [QUALITATIVE]
+5. [TESTABLE] Executor correctly rejects unauthorized commands [TESTABLE]
 
 ## Explicitly Out of Scope
-- Complex command validation
-- Persistent state management
+- Advanced security features (basic sandboxing only)
+- Complex error handling for edge cases
