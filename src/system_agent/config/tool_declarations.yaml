@@ -1,0 +1,18 @@
+tools:
+  - name: system_uptime
+    description: Check how much time system has be running
+    command: uptime
+    parameters: {}
+
+  - name: list_files
+    description: list files in the directory requested by the user
+    command: ls -lhrt
+    parameters:
+      - name: path
+        type: string
+        description: the path to the directory
+
+  - name: system_reboot
+    description: restarts the system
+    command: reboot
+    parameters: {}

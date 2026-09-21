@@ -1,0 +1,10 @@
+permissions:
+  farkaskid:
+    allowed_tools:
+      - system_uptime
+      - list_files
+      - echo
+    resource_limits:
+      cpu: 50 # in percentage
+      memory: 1024 # in MB
+
